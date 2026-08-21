@@ -178,6 +178,7 @@ var annotated_dup =
           [ "SSN_GFL", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_s_s_n___g_f_l.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_s_s_n___g_f_l" ],
           [ "SSN_GFL_Split", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_s_s_n___g_f_l___split.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_s_s_n___g_f_l___split" ],
           [ "SSN_GFM", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_s_s_n___g_f_m.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_s_s_n___g_f_m" ],
+          [ "SSN_InductionMotor", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_s_s_n___induction_motor.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_s_s_n___induction_motor" ],
           [ "Switch", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_switch.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_switch" ],
           [ "SynchronGenerator3OrderVBR", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_synchron_generator3_order_v_b_r.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_synchron_generator3_order_v_b_r" ],
           [ "SynchronGenerator4OrderPCM", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_synchron_generator4_order_p_c_m.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_synchron_generator4_order_p_c_m" ],
@@ -193,6 +194,7 @@ var annotated_dup =
           [ "SynchronGeneratorVBR", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_synchron_generator_v_b_r.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_synchron_generator_v_b_r" ],
           [ "Transformer", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_transformer.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_transformer" ],
           [ "TwoTerminalITypeSSNComp", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_two_terminal_i_type_s_s_n_comp.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_two_terminal_i_type_s_s_n_comp" ],
+          [ "TwoTerminalVTypeSplitSSNComp", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_two_terminal_v_type_split_s_s_n_comp.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_two_terminal_v_type_split_s_s_n_comp" ],
           [ "TwoTerminalVTypeSSNComp", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_two_terminal_v_type_s_s_n_comp.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_two_terminal_v_type_s_s_n_comp" ],
           [ "TwoTerminalVTypeVariableSSNComp", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_two_terminal_v_type_variable_s_s_n_comp.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_two_terminal_v_type_variable_s_s_n_comp" ],
           [ "VoltageSource", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_voltage_source.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_voltage_source" ],
@@ -201,6 +203,7 @@ var annotated_dup =
         ] ],
         [ "ITypeSSNComp", "class_c_p_s_1_1_e_m_t_1_1_i_type_s_s_n_comp.html", "class_c_p_s_1_1_e_m_t_1_1_i_type_s_s_n_comp" ],
         [ "SSNComp", "class_c_p_s_1_1_e_m_t_1_1_s_s_n_comp.html", "class_c_p_s_1_1_e_m_t_1_1_s_s_n_comp" ],
+        [ "VTypeSplitSSNComp", "class_c_p_s_1_1_e_m_t_1_1_v_type_split_s_s_n_comp.html", "class_c_p_s_1_1_e_m_t_1_1_v_type_split_s_s_n_comp" ],
         [ "VTypeSSNComp", "class_c_p_s_1_1_e_m_t_1_1_v_type_s_s_n_comp.html", "class_c_p_s_1_1_e_m_t_1_1_v_type_s_s_n_comp" ],
         [ "VTypeVariableSSNComp", "class_c_p_s_1_1_e_m_t_1_1_v_type_variable_s_s_n_comp.html", "class_c_p_s_1_1_e_m_t_1_1_v_type_variable_s_s_n_comp" ]
       ] ],
