@@ -158,6 +158,45 @@ The Windows wheel is a reduced build and does not carry every feature; see
 The package also contains only the simulation core; the example notebooks additionally need
 plotting and data handling packages, which are listed in the import section of each notebook.
 &lt;/div>
+&lt;h2 id="macos">macOS&lt;/h2>
+&lt;p>DPsim currently does not provide a pre-built macOS wheel. On macOS, install DPsim from source using the native setup script included in the repository.&lt;/p>
+&lt;p>The setup has been tested on Apple Silicon and uses the standard CMake build together with Homebrew-provided dependencies.&lt;/p>
+&lt;p>First make sure the Xcode Command Line Tools are installed:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>xcode-select --install
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Then clone DPsim and run the macOS setup script:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>git clone https://github.com/sogno-platform/dpsim.git
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">cd&lt;/span> dpsim
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>chmod +x scripts/install-macos.sh
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>./scripts/install-macos.sh
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The setup script prepares the complete native development environment. It installs the required Homebrew dependencies, creates a local Python virtual environment called &lt;code>dpsim-python&lt;/code>, configures and builds DPsim with CMake, installs the Python package, and registers a &lt;code>DPsim Python&lt;/code> Jupyter kernel.&lt;/p>
+&lt;p>The native build includes support for:&lt;/p>
+&lt;ul>
+&lt;li>Apple Silicon (&lt;code>arm64&lt;/code>) and Intel (&lt;code>x86_64&lt;/code>) macOS&lt;/li>
+&lt;li>CMake and Ninja&lt;/li>
+&lt;li>Eigen 3&lt;/li>
+&lt;li>SuiteSparse / KLU&lt;/li>
+&lt;li>Graphviz&lt;/li>
+&lt;li>OpenMP through Homebrew &lt;code>libomp&lt;/code>&lt;/li>
+&lt;li>Python bindings through pybind11&lt;/li>
+&lt;li>C++ examples&lt;/li>
+&lt;li>JupyterLab and the DPsim Python environment&lt;/li>
+&lt;/ul>
+&lt;p>After installation, activate the Python environment with:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">source&lt;/span> dpsim-python/bin/activate
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The Python package can then be used normally:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">dpsim&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">dpsimpy&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>For C++ development, the build directory created by the setup script is already configured with the required macOS-specific CMake settings. Normal rebuilds therefore only require:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>cmake --build build --parallel &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>sysctl -n hw.ncpu&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The macOS-specific dependency paths and compiler settings are stored in the CMake build directory and do not have to be specified again for subsequent builds.&lt;/p>
+&lt;p>To recreate the complete local environment and build tree from scratch, run:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">CLEAN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span> ./scripts/install-macos.sh
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This removes the local DPsim build directory, Python environment and registered DPsim Jupyter kernel before recreating them.&lt;/p>
+&lt;p>The default macOS setup builds the DPsim simulation core, Python bindings, OpenMP support,
+Graphviz support and C++ examples.&lt;/p>
+&lt;p>Note: CIM/CGMES support and VILLASnode integration are not enabled by the default macOS setup script
+and require their respective native dependencies to be configured separately.&lt;/p>
 &lt;h2 id="supported-versions">Supported versions&lt;/h2>
 &lt;p>DPsim needs CPython 3.10 or newer, both for the wheels and for a source build. One wheel is
 published per platform and CPython version:&lt;/p>
@@ -1246,7 +1285,9 @@ accepted from forks only and pushing needs an authenticated remote:&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">cd&lt;/span> dpsim
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git remote add upstream https://github.com/sogno-platform/dpsim.git
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The container route below is the most reproducible, because the image already carries every
-dependency at the version CI uses. The native routes need those dependencies installed by hand.&lt;/p>
+dependency at the version CI uses. The native Linux and Windows routes need their dependencies
+installed separately. On macOS, the repository provides a setup script that installs the required
+dependencies and configures the native development environment.&lt;/p>
 &lt;h2 id="container-based">Container based&lt;/h2>
 &lt;p>The commands below use &lt;code>docker&lt;/code>, but the images are ordinary OCI images, so &lt;code>podman&lt;/code> works as a
 drop-in replacement throughout. On Fedora and Rocky, &lt;code>podman&lt;/code> is usually the one already
@@ -1357,13 +1398,47 @@ not build there. &lt;code>WITH_VILLAS&lt;/code> therefore stays off and the &lt;
 so co-simulation examples cannot be built on Windows. The CIM reader is likewise not part of the
 CI Windows build, as libcimpp is not installed there.&lt;/p>
 &lt;h2 id="cmake-for-macos">CMake for macOS&lt;/h2>
-&lt;p>macOS is not covered by CI, so treat this as a starting point rather than a supported path.
-Install the dependencies with Homebrew:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>/bin/bash -c &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>brew install gcc git cmake graphviz python3 gsl eigen spdlog
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Then build as in the container section. Building on Apple Silicon is known to fail while building
-libcimpp, see &lt;a href="https://github.com/sogno-platform/dpsim/issues/609">issue #609&lt;/a>. Configure with
-&lt;code>-DWITH_CIM=OFF&lt;/code> if you do not need the CIM reader.&lt;/p>
+&lt;p>DPsim can be built natively on macOS using the setup script provided in the repository. The setup
+has been tested on Apple Silicon (&lt;code>arm64&lt;/code>). macOS is currently not part of the DPsim CI matrix.&lt;/p>
+&lt;p>The Xcode Command Line Tools provide AppleClang and the macOS SDK. Install them first if they are
+not already available:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>xcode-select --install
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Then run the macOS setup script from the root of the DPsim repository:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>chmod +x scripts/install-macos.sh
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>./scripts/install-macos.sh
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If Homebrew is not already installed, the setup script installs it first. It then installs the
+required native development dependencies, including CMake, Ninja, Eigen 3, Graphviz, OpenMP
+through Homebrew &lt;code>libomp&lt;/code>, Python and the dependencies required by the repository development
+tooling.&lt;/p>
+&lt;p>SuiteSparse and spdlog are fetched by the DPsim CMake configuration rather than installed
+globally.&lt;/p>
+&lt;p>The setup creates a repository-local Python virtual environment named &lt;code>dpsim-python&lt;/code> and
+configures the regular &lt;code>build&lt;/code> directory with the required macOS-specific dependency paths and
+compiler settings. It then builds DPsim, the Python bindings and the C++ examples.&lt;/p>
+&lt;p>The DPsim Python package and its notebook dependencies are installed into the same environment,
+and a &lt;code>DPsim Python&lt;/code> Jupyter kernel is registered.&lt;/p>
+&lt;p>After the setup has completed, activate the environment with:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">source&lt;/span> dpsim-python/bin/activate
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The build directory is already configured, so normal C++ development only requires:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>cmake --build build --parallel &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>sysctl -n hw.ncpu&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The required dependency paths and compiler settings are stored in the CMake build directory and
+do not need to be supplied again for subsequent builds.&lt;/p>
+&lt;p>If changes affect the Python bindings or Python package, reinstall the package into the active
+environment:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>python -m pip install .
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The installation can be verified with:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>python -c &lt;span style="color:#4e9a06">&amp;#34;import dpsim, dpsimpy; print(dpsimpy.__file__)&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>For a completely clean rebuild of the local macOS development environment, run:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">CLEAN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span> ./scripts/install-macos.sh
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This removes the local DPsim build directory, the &lt;code>dpsim-python&lt;/code> virtual environment and the
+registered DPsim Jupyter kernel before recreating them.&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;h4 class="alert-heading">Optional DPsim features&lt;/h4>
+&lt;p>The default macOS setup builds the DPsim simulation core, Python bindings, OpenMP support,
+Graphviz support and C++ examples.&lt;/p>
+&lt;p>CIM/CGMES support and VILLASnode integration are not enabled by the default macOS setup and
+require their respective native dependencies to be configured separately.&lt;/p>
+&lt;/div>
 &lt;h2 id="python-package">Python package&lt;/h2>
 &lt;p>Wheels are produced by cibuildwheel in the &lt;code>packaging-python&lt;/code> workflow, currently for
 manylinux x86_64 and Windows x86-64, CPython 3.10 through 3.14. The Windows wheel is the
@@ -2183,17 +2258,44 @@ applying one: a fault, using a switch.&lt;/p>
 the loads and lines used here under &lt;a href="https://sogno.energy/dpsim/docs/concepts/models/loads/">loads&lt;/a> and
 &lt;a href="https://sogno.energy/dpsim/docs/concepts/models/branches/">branches&lt;/a>.&lt;/p></description></item><item><title>Docs: Transformer</title><link>https://sogno.energy/dpsim/docs/concepts/models/transformer/</link><pubDate>Thu, 22 Jul 2021 00:00:00 +0000</pubDate><guid>https://sogno.energy/dpsim/docs/concepts/models/transformer/</guid><description>
 &lt;h2 id="2-winding-transformer">2-Winding Transformer&lt;/h2>
-&lt;p>The transformer model is composed of an RL-segment and an ideal transformer.
-The single line diagram is depicted in the figure below.&lt;/p>
+&lt;p>The transformer is a T-equivalent: the winding resistance and leakage inductance are split evenly
+between the two windings, a magnetizing branch is connected from the midpoint of that split to
+ground, and an ideal transformer carries the ratio. The single line diagram is depicted in the
+figure below.&lt;/p>
 &lt;p>&lt;img src="electrical_transformer.svg" alt="Transformer">&lt;/p>
-&lt;p>If node reduction is not applied, two virtual nodes are created to stamp this model into the system matrix.&lt;/p>
-&lt;p>Furthermore, the ideal transformer has an additional equation, which requires an extension of the system matrix.
-The complete matrix stamp for the ideal transformer is&lt;/p>
+&lt;p>Writing the total leakage impedance referred to the primary as $z = R + j \omega L$, the two series
+segments are $z/2$ each and the magnetizing branch is a resistance in parallel with an inductance,&lt;/p>
+&lt;div class="math">$$y_m = \frac{1}{R_m} + \frac{1}{j \omega L_m} .$$&lt;/div>&lt;p>The model creates virtual nodes for the midpoint and for the ideal part, and two more when the
+winding resistance is included, so a transformer with resistive losses occupies five virtual nodes
+and one without occupies three.&lt;/p>
+&lt;h2 id="magnetizing-parameters">Magnetizing parameters&lt;/h2>
+&lt;p>The branch is sized from the two no-load quantities a nameplate carries under IEC 60076, both given
+per unit of the rated power $S_r$: the no-load current $i_0$ and the no-load loss $P_0$. With the
+nominal voltage of the winding the impedance is referred to, $V_p$,&lt;/p>
+&lt;div class="math">$$R_m = \frac{V_p^2}{P_0 S_r} , \qquad
+B_m = \frac{\sqrt{i_0^2 - P_0^2} \, S_r}{V_p^2} , \qquad
+L_m = \frac{1}{\omega B_m} .$$&lt;/div>&lt;p>The defaults are $i_0 = 0.01$ and $P_0 = 0.001$, and &lt;code>setMagnetizingBranch(i0, P0)&lt;/code> overrides them.
+Two conditions are checked rather than assumed. The rated power must be positive, because it is the
+only scale the branch can be sized against; a transformer without one is built with no magnetizing
+branch and says so in the log. And $i_0$ must exceed $P_0$, because otherwise the square root above
+has no real value and the branch has no reactive part at all, which is not a transformer. That case
+raises rather than silently producing a purely resistive shunt.&lt;/p>
+&lt;p>This is why the rating is a required parameter rather than documentation, and the same is true of
+the nominal voltages: the branch is referred to one winding, and which one is decided by the
+reference winding.&lt;/p>
+&lt;h2 id="the-ideal-part-and-its-extra-equation">The ideal part and its extra equation&lt;/h2>
+&lt;p>The ideal transformer imposes two constraints at once: the voltages are in a fixed ratio and the
+powers on the two sides are equal, which makes the currents inversely proportional to the same
+ratio,&lt;/p>
+&lt;div class="math">$$\frac{v_j}{v_k} = T, \qquad i_k = -T \, i_j .$$&lt;/div>&lt;p>Neither is a current balance at a node, so neither can be written as an admittance. This is the same
+situation as an ideal voltage source described under &lt;a href="https://sogno.energy/dpsim/docs/concepts/models/sources/">sources&lt;/a>: the
+system is extended with the branch current as an unknown, the constraint occupies the added row, and
+the added diagonal entry is zero. The complete matrix stamp is&lt;/p>
 &lt;div class="math">$$\begin{array}{c|c c c}
 ~ &amp; j &amp; k &amp; l \cr
 \hline
 j &amp; &amp; &amp; -1 \cr
-k &amp; &amp; &amp; T \cr
+k &amp; &amp; &amp; \overline{T} \cr
 l &amp; 1 &amp; -T &amp; 0
 \end{array}
 \begin{pmatrix}
@@ -2206,40 +2308,71 @@ i_{l} \cr
 \cr
 \cr
 0\cr
-\end{pmatrix}$$&lt;/div>&lt;p>The variable $j$ denotes the high voltage node while $k$ is the low voltage node.
-$l$ indicates the inserted row and column to accommodate the relation between the two voltages at the ends of the transformer.
-The transformer ratio is defined as $T = V_{j} / V_{k}$.
-A phase shift can be introduced if $T$ is considered as a complex number.&lt;/p>
-&lt;h2 id="why-the-ideal-part-needs-an-extra-equation">Why the ideal part needs an extra equation&lt;/h2>
-&lt;p>The ideal transformer imposes two constraints at once: the voltages are in a fixed ratio and the
-powers on the two sides are equal, which makes the currents inversely proportional to the same ratio,&lt;/p>
-&lt;div class="math">$$\frac{v_j}{v_k} = T, \qquad i_k = -T \, i_j .$$&lt;/div>&lt;p>Neither is a current balance at a node, so neither can be written as an admittance. This is the same
-situation as an ideal voltage source described under &lt;a href="https://sogno.energy/dpsim/docs/concepts/models/sources/">sources&lt;/a>: the
-system is extended with the branch current as an unknown, the constraint occupies the added row, and
-the added diagonal entry is zero. The asymmetry of the stamp, $-1$ against $T$ in the added column
-and $1$ against $-T$ in the added row, is exactly the statement that voltage scales by $T$ while
-current scales by $1/T$ with opposite sign.&lt;/p>
-&lt;p>Making $T$ complex adds a phase shift, which is how a delta-wye connection is represented without
-modelling the windings. The magnitude and the angle then carry the tap ratio and the vector group
-respectively.&lt;/p>
-&lt;h2 id="series-impedance-and-the-direction-of-the-ratio">Series impedance and the direction of the ratio&lt;/h2>
-&lt;p>The winding resistance and leakage inductance are lumped into one series branch on one side of the
-ideal part rather than split between the two sides. Referring an impedance across an ideal
-transformer scales it by $T^2$, so the choice of side is a choice of reference, not an
+\end{pmatrix}$$&lt;/div>&lt;p>The variable $j$ denotes the high voltage node while $k$ is the low voltage node, and $l$ indicates
+the inserted row and column. The transformer ratio is $T = V_{j} / V_{k}$. The asymmetry of the
+stamp, $-1$ against $\overline{T}$ in the added column and $1$ against $-T$ in the added row, is
+exactly the statement that voltage scales by $T$ while current scales by $1/T$ with opposite sign.&lt;/p>
+&lt;p>A complex $T$ adds a phase shift, which is how a delta-wye connection is represented without
+modelling the windings: the magnitude carries the tap ratio and the angle carries the vector group.
+The conjugate on the low voltage row is what makes the phase shift preserve power rather than create
+it. The three-phase representation in &lt;code>SP::Ph3&lt;/code> and &lt;code>DP::Ph3&lt;/code> carries this, and &lt;code>EMT::Ph3&lt;/code> cannot,
+because a phase shift is a rotation in the complex plane and the EMT state is real.&lt;/p>
+&lt;h2 id="the-direction-of-the-ratio">The direction of the ratio&lt;/h2>
+&lt;p>The reference winding decides which side the impedance is referred to. Referring an impedance across
+an ideal transformer scales it by $T^2$, so the choice of side is a choice of reference, not an
 approximation, and the parameters have to be given consistently with it.&lt;/p>
-&lt;p>The ratio is defined greater than one, from high voltage to low. Supplying it the other way round
-describes the same physical device but with the two ends exchanged, so a transformer given an
-inverted ratio has to have its terminal assignment inverted with it to remain the same transformer.&lt;/p>
-&lt;h2 id="numerical-damping">Numerical damping&lt;/h2>
-&lt;p>Connecting an inductive branch between two nodes that have no other path to ground leaves those
-nodes weakly defined, and the resulting matrix can be poorly conditioned or singular. Small shunt
-elements at each terminal remove that, at the cost of a negligible current that would not exist in
-the physical device.&lt;/p>
-&lt;p>Those elements are sized from the transformer&amp;rsquo;s rated power, which makes the rating a required
-parameter rather than documentation. Without a positive rating there is no scale to size them
-against, and the natural result is an infinite resistance and a zero capacitance whose admittance is
-not a number. A single such entry propagates through the factorisation and destroys the whole
-solution, not merely the transformer, so the rating cannot be treated as optional.&lt;/p></description></item><item><title>Docs: Attributes</title><link>https://sogno.energy/dpsim/docs/developer-guide/attributes-and-scheduling/attributes/</link><pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate><guid>https://sogno.energy/dpsim/docs/developer-guide/attributes-and-scheduling/attributes/</guid><description>
+&lt;p>By default the reference is resolved from the nominal voltages, taking the higher one, and the ratio
+is then greater than one, from high voltage to low. Passing a &lt;code>WindingReference&lt;/code> explicitly overrides
+that: &lt;code>Primary&lt;/code>, &lt;code>Secondary&lt;/code> or &lt;code>Tertiary&lt;/code> name the winding, and &lt;code>Auto&lt;/code> restores the resolution from
+nominal voltages. If both windings are nominally equal the resolution is ambiguous, the primary is
+assumed and the model warns; an explicit reference removes the ambiguity.&lt;/p>
+&lt;p>Three-winding transformers are not implemented, so &lt;code>Tertiary&lt;/code> raises rather than silently modelling
+something else.&lt;/p>
+&lt;h2 id="power-flow-and-the-behaviour-gate">Power flow and the behaviour gate&lt;/h2>
+&lt;p>For power flow the T is reduced to a two-port, which is a Kron reduction eliminating the midpoint
+node. With the half-leakage $z_h = z/2$ and $\Delta = z + z_h^2 y_m$,&lt;/p>
+&lt;div class="math">$$y_{\text{shunt}} = \frac{1 + z_h y_m}{\Delta} , \qquad
+y_{\text{series}} = \frac{1}{\Delta} ,$$&lt;/div>
+&lt;div class="math">$$Y =
+\begin{pmatrix}
+y_{\text{shunt}} &amp; -y_{\text{series}} T \cr
+-y_{\text{series}} \overline{T} &amp; y_{\text{shunt}} |T|^2
+\end{pmatrix} .$$&lt;/div>&lt;p>At $y_m = 0$ this degenerates exactly to the series admittance $1/z$, so the reduction is the
+textbook pi-with-tap plus a correction, not a different model.&lt;/p>
+&lt;p>Whether $y_m$ is present at all is decided by the component behaviour. Under
+&lt;code>Behaviour::Simulation&lt;/code> the magnetizing branch is left out, so a plain load flow matches the
+textbook pi-with-tap that a user comparing against hand calculations expects. Under
+&lt;code>Behaviour::Initialization&lt;/code> and &lt;code>Behaviour::MNASimulation&lt;/code> it is included, so that the power flow
+solution seeds a time-domain run of the same circuit and the admittance the power flow sees is the
+limit of the MNA conductance as the step grows.&lt;/p>
+&lt;h2 id="scaling-conventions-across-the-domains">Scaling conventions across the domains&lt;/h2>
+&lt;p>The domains do not agree on what a voltage or a current means, and the transformer touches all of
+them, so the conventions are collected here.&lt;/p>
+&lt;p>Power flow node voltages are line-line RMS. The &lt;code>DP::Ph3&lt;/code> and &lt;code>EMT::Ph3&lt;/code> states are phase-peak
+envelopes instead, so seeding one from the other needs the factor &lt;code>RMS3PH_TO_PEAK1PH&lt;/code>, which is
+$\sqrt{2/3}$. Omitting it initializes a state $\sqrt{3/2}$ too small and produces a startup
+transient after an otherwise correct power flow initialization, which reads as a model defect and is
+not one. &lt;code>SP::Ph3&lt;/code> keeps the line-line RMS convention in every phase, so each phase entry carries
+the whole-transformer quantity rather than a third of it.&lt;/p>
+&lt;p>The sources are not uniform either. &lt;code>EMT::Ph3::VoltageSource&lt;/code> is the only source class that scales
+its own reference, so it takes line-line RMS directly, while every other source takes the working
+unit of its own domain. Driving a &lt;code>DP::Ph3&lt;/code> circuit with a raw line-line value therefore places the
+operating point $\sqrt{3/2}$ above what the initialization assumed, and the model rings.&lt;/p>
+&lt;p>The power formula follows from the same split. In &lt;code>DP::Ph3&lt;/code> and &lt;code>EMT::Ph3&lt;/code>, where the quantities are
+phase-peak,&lt;/p>
+&lt;div class="math">$$P = \tfrac{3}{2} \, \mathrm{Re}\{ V \overline{I} \} ,$$&lt;/div>&lt;p>while in &lt;code>DP::Ph1&lt;/code>, &lt;code>SP::Ph1&lt;/code> and &lt;code>SP::Ph3&lt;/code> it is $\mathrm{Re}{ V \overline{I} }$ from a single
+entry. Applying the second form to a phase-peak domain gives exactly two thirds of the right answer.&lt;/p>
+&lt;h2 id="verification">Verification&lt;/h2>
+&lt;p>&lt;code>dpsim/examples/cxx/Circuits/DP_Ph1_Transformer_OpenShortCircuit.cpp&lt;/code> runs three units through the
+open-circuit and short-circuit tests in all five domains. Every unit recovers its nameplate: the
+no-load current and loss from the open-circuit test, and the short-circuit voltage $u_k$ from the
+short-circuit test, each to within the discretization error of the step used.&lt;/p>
+&lt;p>One reading of the open-circuit test needs care in EMT. The magnetizing loop has no resistive path
+that damps a DC component, so an offset left by energization decays with a time constant of the
+order of $L_m$ over the winding resistance, which is minutes rather than cycles. An RMS taken over a
+window at one second still contains it. Extracting the fundamental with a one-cycle Fourier
+component rejects it and returns the nameplate value; the phasor domains do not show the effect at
+all, because they do not represent DC.&lt;/p></description></item><item><title>Docs: Attributes</title><link>https://sogno.energy/dpsim/docs/developer-guide/attributes-and-scheduling/attributes/</link><pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate><guid>https://sogno.energy/dpsim/docs/developer-guide/attributes-and-scheduling/attributes/</guid><description>
 &lt;p>In DPsim, an attribute is a special kind of variable which usually stores a scalar or matrix value used in the simulation.
 Examples for attributes are the voltage of a node, the reference current of a current source, or the left and right vectors of the MNA matrix system.
 In general, attributes are instances of the &lt;code>Attribute&amp;lt;T&amp;gt;&lt;/code> class, but they are usually stored and accessed through a custom smart pointer of type
@@ -2680,13 +2813,13 @@ on its own with an &lt;code>image&lt;/code> input.&lt;/li>
 &lt;p>Voltage quantities are expressed either as phase-to-phase RMS values (denominated as &lt;code>RMS3PH&lt;/code>) or as phase-to-ground peak values (denominated as &lt;code>PEAK1PH&lt;/code>):&lt;/p>
 &lt;ul>
 &lt;li>Initialisation quantities (e.g. &lt;code>initialSingleVoltage&lt;/code> of &lt;code>SimPowerComp&lt;/code>) as &lt;code>RMS3PH&lt;/code> values&lt;/li>
-&lt;li>Simulation quantities in both &lt;code>SP&lt;/code> and &lt;code>DP&lt;/code> domain (e.g. &lt;code>mIntfVoltage&lt;/code> of &lt;code>DP::Ph1::PiLine&lt;/code>) as &lt;code>RMS3PH values&lt;/code>&lt;/li>
-&lt;li>Simulation quantities in the &lt;code>EMT&lt;/code> domain (e.g. &lt;code>mIntfVoltage&lt;/code> of &lt;code>EMT::Ph3::Transformer&lt;/code>) as &lt;code>PEAK1PH&lt;/code> values&lt;/li>
+&lt;li>Simulation quantities in the &lt;code>SP&lt;/code> and &lt;code>DP::Ph1&lt;/code> domains (e.g. &lt;code>mIntfVoltage&lt;/code> of &lt;code>DP::Ph1::PiLine&lt;/code>) as &lt;code>RMS3PH&lt;/code> values&lt;/li>
+&lt;li>Simulation quantities in the &lt;code>DP::Ph3&lt;/code> and &lt;code>EMT&lt;/code> domains (e.g. &lt;code>mIntfVoltage&lt;/code> of &lt;code>DP::Ph3::PiLine&lt;/code> or &lt;code>EMT::Ph3::Transformer&lt;/code>) as &lt;code>PEAK1PH&lt;/code> values&lt;/li>
 &lt;/ul>
 &lt;p>Current quantities are expressed either as &lt;code>RMS&lt;/code> or as &lt;code>PEAK&lt;/code> values:&lt;/p>
 &lt;ul>
-&lt;li>Simulation quantities in both &lt;code>SP&lt;/code> and &lt;code>DP&lt;/code> domain (e.g. &lt;code>mIntfCurrent&lt;/code> of &lt;code>DP::Ph1::PiLine&lt;/code>) as &lt;code>RMS&lt;/code> values&lt;/li>
-&lt;li>Simulation quantities in the &lt;code>EMT&lt;/code> domain (e.g. &lt;code>mIntfCurrent&lt;/code> of &lt;code>EMT::Ph3::Transformer&lt;/code>) as &lt;code>PEAK&lt;/code> values&lt;/li>
+&lt;li>Simulation quantities in the &lt;code>SP&lt;/code> and &lt;code>DP::Ph1&lt;/code> domains (e.g. &lt;code>mIntfCurrent&lt;/code> of &lt;code>DP::Ph1::PiLine&lt;/code>) as &lt;code>RMS&lt;/code> values&lt;/li>
+&lt;li>Simulation quantities in the &lt;code>DP::Ph3&lt;/code> and &lt;code>EMT&lt;/code> domains (e.g. &lt;code>mIntfCurrent&lt;/code> of &lt;code>DP::Ph3::PiLine&lt;/code> or &lt;code>EMT::Ph3::Transformer&lt;/code>) as &lt;code>PEAK&lt;/code> values&lt;/li>
 &lt;/ul>
 &lt;h2 id="logging">Logging&lt;/h2>
 &lt;p>Debug or trace should be the default log level for information that might be nice to have but not necessary for every simulation case.&lt;/p>
@@ -4047,13 +4180,16 @@ $\frac{d}{dt} + j\omega_s$, so what is discretised is $\mathbf{A} - j\omega_s\ma
 $\mathbf{A}$, and splitting the envelope into real and imaginary parts turns that into a real system
 of twice the size. This is derived in full under
 &lt;a href="https://sogno.energy/dpsim/docs/concepts/ssn-domain-formulation/">SSN across domains&lt;/a>, together with why the equivalent
-admittance is complex in an envelope domain and real in an instantaneous one.&lt;/p>
+admittance is represented differently in envelope and instantaneous domains.&lt;/p>
 &lt;p>The real-augmented form matches how the rest of the dynamic phasor system is already assembled: a
 complex admittance $g = g_r + j g_i$ is stamped as the real block
 $\left[\begin{smallmatrix} g_r &amp;amp; -g_i \ g_i &amp;amp; g_r \end{smallmatrix}\right]$, with real and
-imaginary node parts in separate halves of a real-valued system. The SSN component therefore needs
-no complex assembly of its own, and the trapezoidal discretisation used by the instantaneous models
-applies unchanged.&lt;/p>
+imaginary node parts in separate halves of a real-valued system. This complex-scalar representation
+is sufficient when the component is complex-linear. A mixed real/envelope model, such as a
+controlled converter, may instead produce a general real $2 \times 2$ block because its $d$- and
+$q$-axis responses differ. That block must be retained when it is stamped into the same
+real-augmented system. In both cases, the trapezoidal discretisation used by the instantaneous
+models applies unchanged.&lt;/p>
 &lt;h2 id="components">Components&lt;/h2>
 &lt;p>The single-phase dynamic-phasor SSN models are:&lt;/p>
 &lt;ul>
@@ -4589,7 +4725,128 @@ Stability Studies&amp;rdquo;. &lt;a href="https://doi.org/10.1109/IEEESTD.2016.7
 &lt;a href="https://doi.org/10.1007/978-3-642-13669-6">https://doi.org/10.1007/978-3-642-13669-6&lt;/a>&lt;/li>
 &lt;li>M. Eremia and M. Shahidehpour, &lt;em>Handbook of Electrical Power System Dynamics: Modeling,
 Stability, and Control&lt;/em>. &lt;a href="https://ieeexplore.ieee.org/book/6480471">https://ieeexplore.ieee.org/book/6480471&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>Docs: The Same Circuit in Two Domains</title><link>https://sogno.energy/dpsim/docs/tutorials/python/comparing-domains/</link><pubDate>Fri, 31 Jul 2026 00:00:00 +0000</pubDate><guid>https://sogno.energy/dpsim/docs/tutorials/python/comparing-domains/</guid><description>
+&lt;/ul></description></item><item><title>Docs: Switches</title><link>https://sogno.energy/dpsim/docs/concepts/models/switches/</link><pubDate>Wed, 19 Aug 2026 00:00:00 +0000</pubDate><guid>https://sogno.energy/dpsim/docs/concepts/models/switches/</guid><description>
+&lt;p>A switch in a nodal formulation is not an ideal open or short. Both would be singular: an ideal
+short shorts two node equations together, and an ideal open leaves a node with no path to ground.
+Switches are therefore represented by a finite resistance that takes one of two values.&lt;/p>
+&lt;h2 id="the-two-resistance-model">The two-resistance model&lt;/h2>
+&lt;p>The switch contributes a single admittance between its two terminals,&lt;/p>
+&lt;div class="math">$$G = \begin{cases}
+1 / R_{closed} &amp; \text{closed} \\
+1 / R_{open} &amp; \text{open}
+\end{cases}$$&lt;/div>&lt;p>stamped as a conductance between the two terminal nodes, with the usual reduction when one terminal
+is grounded. Typical values are far apart, of the order of milliohms closed and megohms open, so the
+switch is a near short or a near open without ever being singular.&lt;/p>
+&lt;p>The consequence of this choice is that the ratio $R_{open} / R_{closed}$ lands directly in the
+condition number of the system matrix. Making the contrast arbitrarily large to approach an ideal
+switch degrades the accuracy of every node voltage in the network, not only those near the switch.
+The values are a numerical compromise, not a physical measurement.&lt;/p>
+&lt;p>Because the admittance appears in the system matrix rather than in the right hand side, changing
+state requires the matrix to be refactorised. This is why a network that switches often costs more
+than one that does not, even though the model itself is trivial.&lt;/p>
+&lt;h2 id="why-a-step-change-in-resistance-is-a-problem">Why a step change in resistance is a problem&lt;/h2>
+&lt;p>Opening a switch that carries inductive current asks the network to interrupt that current within
+one time step. The inductor opposes it, and with the trapezoidal companion model the result is a
+numerical oscillation across the switch: the current alternates sign at the step frequency and
+decays slowly, contaminating the solution for many steps after the event.&lt;/p>
+&lt;p>Closing has the mirror image of the same problem. Energising a path that terminates in capacitance
+asks the network to move the capacitor voltage discontinuously, and the trapezoidal companion model
+of the capacitor answers with the same alternating error.&lt;/p>
+&lt;p>This is a property of the discretisation, not of the physical circuit. A real breaker interrupts at a
+current zero, while controlled switching can aim to close at a favourable voltage instant. The arc
+across real contacts dissipates what is left; a two-valued resistance switched at an arbitrary
+instant has neither mechanism.&lt;/p>
+&lt;h2 id="what-a-current-zero-means-per-domain">What a current zero means per domain&lt;/h2>
+&lt;p>The remedy a real breaker uses is to switch where the discontinuity is not there in the first place.
+Whether that is available depends on what the domain represents.&lt;/p>
+&lt;p>In EMT the state variables are instantaneous quantities, so the current zero is directly visible.
+Waiting for it means the interrupted current is zero to within one time step and there is nothing
+left for the companion model to disagree about. This is consistent with the intended ideal
+current-zero interruption model.&lt;/p>
+&lt;p>In DP the state variables are complex envelopes of a carrier at the reference frequency
+$\omega_s$, and the instantaneous current can be reconstructed from them,&lt;/p>
+&lt;div class="math">$$i_k(t) = \mathrm{Re}\{ I_k(t) \, e^{j \omega_s t} \},$$&lt;/div>&lt;p>per phase for &lt;code>DP::Ph3&lt;/code> and for the single envelope of &lt;code>DP::Ph1&lt;/code>. This locates the current zero
+correctly. What it does not do is remove the transient: the history terms of the neighbouring
+inductors are expressed in the envelope, not in the instantaneous quantity, and they are not zero at
+that instant. The envelope itself still has to jump, and the trapezoidal companion model cannot
+follow it.&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">CurrentZero in DP is not EMT-like behaviour&lt;/h4>
+The &lt;code>CurrentZero&lt;/code> mode exists in DP and does find the correct instant, which is useful when the
+switching time itself is the quantity of interest. It does not deliver the continuity that the same
+mode gives in EMT, and the name invites that expectation. If you need continuous behaviour in DP,
+use the exponential mode below.
+&lt;/div>
+&lt;h2 id="exponential-zcs-emulation">Exponential ZCS emulation&lt;/h2>
+&lt;p>The alternative is to stop asking for a discontinuity at all. The switch resistance is moved
+continuously between its two values along a geometric path,&lt;/p>
+&lt;div class="math">$$R(\alpha) = R_{closed} \left( \frac{R_{open}}{R_{closed}} \right)^{\alpha}
+= \exp\!\big( \ln R_{closed} + \alpha \, ( \ln R_{open} - \ln R_{closed} ) \big),$$&lt;/div>&lt;p>with $\alpha$ advancing linearly in time over a switching duration $T_{sw}$ that is a model
+parameter. Opening runs $\alpha$ from $0$ to $1$, closing runs it from $1$ to $0$; both directions
+use the same law, so a switch configured this way is symmetric. Because the resistance stamped in a
+step is the one the &lt;em>next&lt;/em> solve uses, $\alpha$ is evaluated at $t + \Delta t$.&lt;/p>
+&lt;p>A geometric path rather than a linear one is what makes this work over nine decades of resistance: it
+spends comparable numbers of steps in each decade, so the change per step stays a bounded ratio
+instead of being negligible at first and violent at the end.&lt;/p>
+&lt;p>As the name suggests, this is an emulation of zero-current switching, not an arc model. There is no
+physical arc voltage, no energy balance and no reignition. The parameter to choose is $T_{sw}$, and
+it should be long enough that the ramp covers several time steps and short enough to stay
+insignificant on the timescale being studied.&lt;/p>
+&lt;p>The cost is that the system matrix changes at every step of the transition rather than once, so each
+of those steps requires a refactorisation. Both non-ideal modes therefore report
+&lt;code>supportsPrecomputedSystemMatrices() == false&lt;/code> and take the variable-component path through the
+solver, while &lt;code>Ideal&lt;/code> keeps the cheap precomputed two-state path.&lt;/p>
+&lt;p>On closing, DP ZCS suppresses unrealistic transients that are also related to companion-model history
+terms. This can also suppress physically real closing inrush, so the result is still only an
+approximation. EMT closing inrush is real, not an artefact.&lt;/p>
+&lt;h2 id="choosing-a-mode">Choosing a mode&lt;/h2>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Mode&lt;/th>
+&lt;th>Opening&lt;/th>
+&lt;th>Closing&lt;/th>
+&lt;th>Use it when&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>Ideal&lt;/code>&lt;/td>
+&lt;td>immediate&lt;/td>
+&lt;td>immediate&lt;/td>
+&lt;td>the switching transient does not matter, or the branch carries no inductive current and feeds no capacitance&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>CurrentZero&lt;/code>&lt;/td>
+&lt;td>at the current zero&lt;/td>
+&lt;td>immediate&lt;/td>
+&lt;td>EMT, where it is the physically correct interruption; in DP only when the instant matters and the transient does not&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>ExponentialZCSEmulation&lt;/code>&lt;/td>
+&lt;td>ramped over $T_{sw}$&lt;/td>
+&lt;td>ramped over $T_{sw}$&lt;/td>
+&lt;td>the transient has to be absent, in particular for DP in either direction&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>The modes are available in &lt;code>EMT::Ph3::Switch&lt;/code>, &lt;code>DP::Ph3::Switch&lt;/code> and &lt;code>DP::Ph1::Switch&lt;/code>. Every switch
+defaults to &lt;code>Ideal&lt;/code>.&lt;/p>
+&lt;h2 id="the-variable-resistance-switch">The variable-resistance switch&lt;/h2>
+&lt;p>&lt;code>varResSwitch&lt;/code> (&lt;code>DP::Ph1&lt;/code> and &lt;code>SP::Ph1&lt;/code>) is the older, narrower form of the same idea. On opening it
+multiplies the resistance by a fixed factor each step,&lt;/p>
+&lt;div class="math">$$R[k+1] = \alpha \, R[k], \qquad \alpha > 1,$$&lt;/div>&lt;p>until it passes the target open value, after which it is held there. Closing is immediate by construction. The
+growth factor is derived from the step size, and the transition rewrites the configured
+$R_{open}$ / $R_{closed}$ attributes as it runs, so the duration is whatever the factor happens to
+produce rather than a value that is set.&lt;/p>
+&lt;p>&lt;code>ExponentialZCSEmulation&lt;/code> supersedes it: same geometric path, but with an explicit switching
+duration, without mutating the configured resistances, in both switching directions, and available
+in three-phase and EMT variants.&lt;/p>
+&lt;h2 id="series-switching">Series switching&lt;/h2>
+&lt;p>Where a switch is combined with the series resistance it energises, the two are represented as one
+element rather than as a switch plus a resistor. This keeps the branch to a single admittance and
+avoids introducing an internal node that carries no physical meaning and adds an equation to the
+system.&lt;/p></description></item><item><title>Docs: The Same Circuit in Two Domains</title><link>https://sogno.energy/dpsim/docs/tutorials/python/comparing-domains/</link><pubDate>Fri, 31 Jul 2026 00:00:00 +0000</pubDate><guid>https://sogno.energy/dpsim/docs/tutorials/python/comparing-domains/</guid><description>
 &lt;p>Every result so far has been an envelope, and the pages have said that an envelope is not a
 waveform without showing what the difference costs. This tutorial runs the same circuit both ways
 and puts the two on one axis.&lt;/p>
@@ -4861,65 +5118,22 @@ shifted operator becomes a real system of twice the size,&lt;/p>
 \begin{bmatrix} \boldsymbol{u}_{re} \\ \boldsymbol{u}_{im} \end{bmatrix}.$$&lt;/div>&lt;p>The off-diagonal $\pm\omega_s \boldsymbol{I}$ blocks are the carrier rotation, and the block
 structure $\begin{bmatrix} P &amp;amp; -Q \ Q &amp;amp; P \end{bmatrix}$ is the real representation of the complex
 number $P + jQ$. Discretising this real system with the same trapezoidal rule and recombining the
-blocks recovers the complex discrete pair, from which the equivalent admittance and the history term
-follow exactly as in the instantaneous case.&lt;/p>
-&lt;p>Two things follow. The equivalent admittance is complex in an envelope domain and real in an
-instantaneous one, so the same component stamps differently. And setting $\omega_s = 0$ collapses
-the augmented system back to the instantaneous one, which is the general statement about the
-envelope transform applied here: the instantaneous formulation is the zero-carrier special case, not
-a separate method.&lt;/p>
+blocks recovers the complex discrete pair for a complex-linear component, from which the equivalent
+admittance and the history term follow exactly as in the instantaneous case.&lt;/p>
+&lt;p>For a complex-linear envelope model, the resulting real block can be folded into one complex
+admittance. A model that mixes real control states with complex-envelope states need not preserve
+the $\begin{bmatrix} P &amp;amp; -Q \ Q &amp;amp; P \end{bmatrix}$ structure. Its equivalent admittance must then
+remain a full real block rather than being reduced to a complex scalar. Setting $\omega_s = 0$
+still collapses the carrier-shifted state equations back to the instantaneous formulation; the
+difference in the Norton representation comes from the component&amp;rsquo;s axis coupling, not from a
+different integration method.&lt;/p>
 &lt;h2 id="why-this-matters-for-accuracy">Why this matters for accuracy&lt;/h2>
 &lt;p>The carrier rotation is handled analytically, inside $\boldsymbol{A}$, rather than numerically by
 resolving the oscillation with small steps. For a component whose envelope varies slowly against a
 fast carrier, the step size is then set by the envelope&amp;rsquo;s own bandwidth rather than by the carrier
 frequency. That is the entire accuracy argument for using an envelope domain here, and it fails for
 exactly the reason it succeeds: content outside the retained band around $\omega_s$ has no
-representation at all.&lt;/p></description></item><item><title>Docs: Switches</title><link>https://sogno.energy/dpsim/docs/concepts/models/switches/</link><pubDate>Fri, 31 Jul 2026 00:00:00 +0000</pubDate><guid>https://sogno.energy/dpsim/docs/concepts/models/switches/</guid><description>
-&lt;p>A switch in a nodal formulation is not an ideal open or short. Both would be singular: an ideal
-short shorts two node equations together, and an ideal open leaves a node with no path to ground.
-Switches are therefore represented by a finite resistance that takes one of two values.&lt;/p>
-&lt;h2 id="the-two-resistance-model">The two-resistance model&lt;/h2>
-&lt;p>The switch contributes a single admittance between its two terminals,&lt;/p>
-&lt;div class="math">$$G = \begin{cases}
-1 / R_{closed} &amp; \text{closed} \\
-1 / R_{open} &amp; \text{open}
-\end{cases}$$&lt;/div>&lt;p>stamped as a conductance between the two terminal nodes, with the usual reduction when one terminal
-is grounded. Typical values are far apart, of the order of milliohms closed and megohms open, so the
-switch is a near short or a near open without ever being singular.&lt;/p>
-&lt;p>The consequence of this choice is that the ratio $R_{open} / R_{closed}$ lands directly in the
-condition number of the system matrix. Making the contrast arbitrarily large to approach an ideal
-switch degrades the accuracy of every node voltage in the network, not only those near the switch.
-The values are a numerical compromise, not a physical measurement.&lt;/p>
-&lt;p>Because the admittance appears in the system matrix rather than in the right hand side, changing
-state requires the matrix to be refactorised. This is why a network that switches often costs more
-than one that does not, even though the model itself is trivial.&lt;/p>
-&lt;h2 id="why-a-step-change-in-resistance-is-a-problem">Why a step change in resistance is a problem&lt;/h2>
-&lt;p>Opening a switch that carries inductive current asks the network to interrupt that current within
-one time step. The inductor opposes it, and with the trapezoidal companion model the result is a
-numerical oscillation across the switch: the current alternates sign at the step frequency and
-decays slowly, contaminating the solution for many steps after the event.&lt;/p>
-&lt;p>This is a property of the discretisation, not of the physical circuit. The physical arc that would
-form across real contacts dissipates that energy; a two-valued resistance has no equivalent
-mechanism.&lt;/p>
-&lt;h2 id="the-variable-resistance-switch">The variable-resistance switch&lt;/h2>
-&lt;p>The variable-resistance switch removes the oscillation by refusing to make the change in a single
-step. On opening, the resistance is multiplied by a fixed factor each step,&lt;/p>
-&lt;div class="math">$$R[k+1] = \alpha \, R[k], \qquad \alpha > 1,$$&lt;/div>&lt;p>until it reaches the target open value, after which it is held there. The current therefore decays
-geometrically over several steps rather than being interrupted at once, which is close to what an
-arc does and which the trapezoidal companion model can follow without ringing.&lt;/p>
-&lt;p>The growth factor is tied to the step size so that the transition covers a comparable interval of
-time rather than a comparable number of steps. Closing is not ramped: the resistance is taken
-straight to its closed value, because energising a path through a small resistance does not produce
-the same interruption problem.&lt;/p>
-&lt;p>The cost is that the system matrix changes on every step of the transition rather than once, so each
-of those steps requires a refactorisation. The switch is worth its cost where the interruption is
-severe, typically a fault applied at a machine terminal or a transformer winding, and unnecessary
-for ordinary load switching.&lt;/p>
-&lt;h2 id="series-switching">Series switching&lt;/h2>
-&lt;p>Where a switch is combined with the series resistance it energises, the two are represented as one
-element rather than as a switch plus a resistor. This keeps the branch to a single admittance and
-avoids introducing an internal node that carries no physical meaning and adds an equation to the
-system.&lt;/p></description></item><item><title>Docs: Real-Time</title><link>https://sogno.energy/dpsim/docs/user-guide/real-time/</link><pubDate>Thu, 13 Feb 2025 00:00:00 +0000</pubDate><guid>https://sogno.energy/dpsim/docs/user-guide/real-time/</guid><description>
+representation at all.&lt;/p></description></item><item><title>Docs: Real-Time</title><link>https://sogno.energy/dpsim/docs/user-guide/real-time/</link><pubDate>Thu, 13 Feb 2025 00:00:00 +0000</pubDate><guid>https://sogno.energy/dpsim/docs/user-guide/real-time/</guid><description>
 &lt;p>Normally a simulation runs as fast as it can: a one-second study finishes in whatever time the
 solver needs. In a real-time simulation, one second of simulated time takes one second of wall clock
 time, no faster and no slower.&lt;/p>

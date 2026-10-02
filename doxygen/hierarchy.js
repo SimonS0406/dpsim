@@ -193,6 +193,7 @@ var hierarchy =
               [ "CPS::DP::Ph1::VoltageSourceRamp", "class_c_p_s_1_1_d_p_1_1_ph1_1_1_voltage_source_ramp.html", null ],
               [ "CPS::DP::Ph3::NetworkInjection", "class_c_p_s_1_1_d_p_1_1_ph3_1_1_network_injection.html", null ],
               [ "CPS::DP::Ph3::PiLine", "class_c_p_s_1_1_d_p_1_1_ph3_1_1_pi_line.html", null ],
+              [ "CPS::DP::Ph3::Transformer", "class_c_p_s_1_1_d_p_1_1_ph3_1_1_transformer.html", null ],
               [ "CPS::SP::Ph1::AvVoltageSourceInverterDQ", "class_c_p_s_1_1_s_p_1_1_ph1_1_1_av_voltage_source_inverter_d_q.html", null ],
               [ "CPS::SP::Ph1::Load", "class_c_p_s_1_1_s_p_1_1_ph1_1_1_load.html", null ],
               [ "CPS::SP::Ph1::NetworkInjection", "class_c_p_s_1_1_s_p_1_1_ph1_1_1_network_injection.html", null ],
@@ -200,7 +201,8 @@ var hierarchy =
               [ "CPS::SP::Ph1::RXLine", "class_c_p_s_1_1_s_p_1_1_ph1_1_1_r_x_line.html", null ],
               [ "CPS::SP::Ph1::SolidStateTransformer", "class_c_p_s_1_1_s_p_1_1_ph1_1_1_solid_state_transformer.html", null ],
               [ "CPS::SP::Ph1::SynchronGeneratorTrStab", "class_c_p_s_1_1_s_p_1_1_ph1_1_1_synchron_generator_tr_stab.html", null ],
-              [ "CPS::SP::Ph1::Transformer", "class_c_p_s_1_1_s_p_1_1_ph1_1_1_transformer.html", null ]
+              [ "CPS::SP::Ph1::Transformer", "class_c_p_s_1_1_s_p_1_1_ph1_1_1_transformer.html", null ],
+              [ "CPS::SP::Ph3::Transformer", "class_c_p_s_1_1_s_p_1_1_ph3_1_1_transformer.html", null ]
             ] ],
             [ "CPS::DP::Ph1::Capacitor", "class_c_p_s_1_1_d_p_1_1_ph1_1_1_capacitor.html", null ],
             [ "CPS::DP::Ph1::ControlledCurrentSource", "class_c_p_s_1_1_d_p_1_1_ph1_1_1_controlled_current_source.html", null ],
@@ -295,6 +297,7 @@ var hierarchy =
               [ "CPS::EMT::Ph1::VoltageSourceRamp", "class_c_p_s_1_1_e_m_t_1_1_ph1_1_1_voltage_source_ramp.html", null ],
               [ "CPS::EMT::Ph3::AvVoltageSourceInverterDQ", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_av_voltage_source_inverter_d_q.html", null ],
               [ "CPS::EMT::Ph3::GFL", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_g_f_l.html", null ],
+              [ "CPS::EMT::Ph3::HalfDecouplingLine", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_half_decoupling_line.html", null ],
               [ "CPS::EMT::Ph3::NetworkInjection", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_network_injection.html", null ],
               [ "CPS::EMT::Ph3::PiLine", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_pi_line.html", null ],
               [ "CPS::EMT::Ph3::RXLoad", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_r_x_load.html", null ],
@@ -322,6 +325,7 @@ var hierarchy =
             [ "CPS::EMT::Ph3::ControlledVoltageSource", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_controlled_voltage_source.html", null ],
             [ "CPS::EMT::Ph3::CurrentSource", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_current_source.html", null ],
             [ "CPS::EMT::Ph3::Inductor", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_inductor.html", null ],
+            [ "CPS::EMT::Ph3::PQLoad", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_p_q_load.html", null ],
             [ "CPS::EMT::Ph3::Resistor", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_resistor.html", null ],
             [ "CPS::EMT::Ph3::SeriesResistor", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_series_resistor.html", null ],
             [ "CPS::EMT::Ph3::SeriesSwitch", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_series_switch.html", null ],
@@ -475,6 +479,7 @@ var hierarchy =
       [ "CPS::DP::Ph1::SynchronGenerator4OrderTPM", "class_c_p_s_1_1_d_p_1_1_ph1_1_1_synchron_generator4_order_t_p_m.html", null ],
       [ "CPS::DP::Ph1::SynchronGenerator6OrderPCM", "class_c_p_s_1_1_d_p_1_1_ph1_1_1_synchron_generator6_order_p_c_m.html", null ],
       [ "CPS::DP::Ph1::SynchronGeneratorIter", "class_c_p_s_1_1_d_p_1_1_ph1_1_1_synchron_generator_iter.html", null ],
+      [ "CPS::EMT::Ph3::PQLoad", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_p_q_load.html", null ],
       [ "CPS::EMT::Ph3::SynchronGenerator4OrderPCM", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_synchron_generator4_order_p_c_m.html", null ]
     ] ],
     [ "CPS::MNATearInterface", "class_c_p_s_1_1_m_n_a_tear_interface.html", [
@@ -729,6 +734,9 @@ var hierarchy =
     [ "SharedFactory< GFL >", "class_shared_factory.html", [
       [ "CPS::EMT::Ph3::GFL", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_g_f_l.html", null ]
     ] ],
+    [ "SharedFactory< HalfDecouplingLine >", "class_shared_factory.html", [
+      [ "CPS::EMT::Ph3::HalfDecouplingLine", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_half_decoupling_line.html", null ]
+    ] ],
     [ "SharedFactory< HydroGovernorParameters >", "class_shared_factory.html", [
       [ "CPS::Signal::HydroGovernorParameters", "class_c_p_s_1_1_signal_1_1_hydro_governor_parameters.html", null ]
     ] ],
@@ -804,6 +812,9 @@ var hierarchy =
     ] ],
     [ "SharedFactory< PowerControllerVSI >", "class_shared_factory.html", [
       [ "CPS::Signal::PowerControllerVSI", "class_c_p_s_1_1_signal_1_1_power_controller_v_s_i.html", null ]
+    ] ],
+    [ "SharedFactory< PQLoad >", "class_shared_factory.html", [
+      [ "CPS::EMT::Ph3::PQLoad", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_p_q_load.html", null ]
     ] ],
     [ "SharedFactory< PQLoadCS >", "class_shared_factory.html", [
       [ "CPS::DP::Ph1::PQLoadCS", "class_c_p_s_1_1_d_p_1_1_ph1_1_1_p_q_load_c_s.html", null ]
@@ -990,8 +1001,10 @@ var hierarchy =
     ] ],
     [ "SharedFactory< Transformer >", "class_shared_factory.html", [
       [ "CPS::DP::Ph1::Transformer", "class_c_p_s_1_1_d_p_1_1_ph1_1_1_transformer.html", null ],
+      [ "CPS::DP::Ph3::Transformer", "class_c_p_s_1_1_d_p_1_1_ph3_1_1_transformer.html", null ],
       [ "CPS::EMT::Ph3::Transformer", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_transformer.html", null ],
-      [ "CPS::SP::Ph1::Transformer", "class_c_p_s_1_1_s_p_1_1_ph1_1_1_transformer.html", null ]
+      [ "CPS::SP::Ph1::Transformer", "class_c_p_s_1_1_s_p_1_1_ph1_1_1_transformer.html", null ],
+      [ "CPS::SP::Ph3::Transformer", "class_c_p_s_1_1_s_p_1_1_ph3_1_1_transformer.html", null ]
     ] ],
     [ "SharedFactory< TurbineGovernor >", "class_shared_factory.html", [
       [ "CPS::Signal::TurbineGovernor", "class_c_p_s_1_1_signal_1_1_turbine_governor.html", null ]
@@ -1172,7 +1185,9 @@ var hierarchy =
       [ "CPS::SP::Ph1::Transformer", "class_c_p_s_1_1_s_p_1_1_ph1_1_1_transformer.html", null ]
     ] ],
     [ "CPS::Base::Ph3::Transformer", "class_c_p_s_1_1_base_1_1_ph3_1_1_transformer.html", [
-      [ "CPS::EMT::Ph3::Transformer", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_transformer.html", null ]
+      [ "CPS::DP::Ph3::Transformer", "class_c_p_s_1_1_d_p_1_1_ph3_1_1_transformer.html", null ],
+      [ "CPS::EMT::Ph3::Transformer", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_transformer.html", null ],
+      [ "CPS::SP::Ph3::Transformer", "class_c_p_s_1_1_s_p_1_1_ph3_1_1_transformer.html", null ]
     ] ],
     [ "std::true_type", null, [
       [ "CPS::CIM::has_value_member< T, std::void_t< decltype(std::declval< const T & >().value)> >", "struct_c_p_s_1_1_c_i_m_1_1has__value__member_3_01_t_00_01std_1_1void__t_3_01decltype_07std_1_1deba20737502113a1da5343a00b8117cbf.html", null ]

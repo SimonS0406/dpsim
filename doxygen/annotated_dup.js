@@ -112,6 +112,7 @@ var annotated_dup =
           [ "SynchronGeneratorDQODE", "class_c_p_s_1_1_d_p_1_1_ph3_1_1_synchron_generator_d_q_o_d_e.html", "class_c_p_s_1_1_d_p_1_1_ph3_1_1_synchron_generator_d_q_o_d_e" ],
           [ "SynchronGeneratorDQTrapez", "class_c_p_s_1_1_d_p_1_1_ph3_1_1_synchron_generator_d_q_trapez.html", "class_c_p_s_1_1_d_p_1_1_ph3_1_1_synchron_generator_d_q_trapez" ],
           [ "SynchronGeneratorVBR", "class_c_p_s_1_1_d_p_1_1_ph3_1_1_synchron_generator_v_b_r.html", "class_c_p_s_1_1_d_p_1_1_ph3_1_1_synchron_generator_v_b_r" ],
+          [ "Transformer", "class_c_p_s_1_1_d_p_1_1_ph3_1_1_transformer.html", "class_c_p_s_1_1_d_p_1_1_ph3_1_1_transformer" ],
           [ "TwoTerminalITypeSSNComp", "class_c_p_s_1_1_d_p_1_1_ph3_1_1_two_terminal_i_type_s_s_n_comp.html", "class_c_p_s_1_1_d_p_1_1_ph3_1_1_two_terminal_i_type_s_s_n_comp" ],
           [ "TwoTerminalVTypeSSNComp", "class_c_p_s_1_1_d_p_1_1_ph3_1_1_two_terminal_v_type_s_s_n_comp.html", "class_c_p_s_1_1_d_p_1_1_ph3_1_1_two_terminal_v_type_s_s_n_comp" ],
           [ "VoltageSource", "class_c_p_s_1_1_d_p_1_1_ph3_1_1_voltage_source.html", "class_c_p_s_1_1_d_p_1_1_ph3_1_1_voltage_source" ]
@@ -164,10 +165,12 @@ var annotated_dup =
           [ "GenericTwoTerminalITypeSSN", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_generic_two_terminal_i_type_s_s_n.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_generic_two_terminal_i_type_s_s_n" ],
           [ "GenericTwoTerminalVTypeSSN", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_generic_two_terminal_v_type_s_s_n.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_generic_two_terminal_v_type_s_s_n" ],
           [ "GFL", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_g_f_l.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_g_f_l" ],
+          [ "HalfDecouplingLine", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_half_decoupling_line.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_half_decoupling_line" ],
           [ "Inductor", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_inductor.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_inductor" ],
           [ "NetworkInjection", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_network_injection.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_network_injection" ],
           [ "PiecewiseLinearInductor", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_piecewise_linear_inductor.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_piecewise_linear_inductor" ],
           [ "PiLine", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_pi_line.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_pi_line" ],
+          [ "PQLoad", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_p_q_load.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_p_q_load" ],
           [ "ReducedOrderSynchronGeneratorVBR", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_reduced_order_synchron_generator_v_b_r.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_reduced_order_synchron_generator_v_b_r" ],
           [ "Resistor", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_resistor.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_resistor" ],
           [ "RxLine", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_rx_line.html", "class_c_p_s_1_1_e_m_t_1_1_ph3_1_1_rx_line" ],
@@ -291,6 +294,7 @@ var annotated_dup =
           [ "Inductor", "class_c_p_s_1_1_s_p_1_1_ph3_1_1_inductor.html", "class_c_p_s_1_1_s_p_1_1_ph3_1_1_inductor" ],
           [ "Resistor", "class_c_p_s_1_1_s_p_1_1_ph3_1_1_resistor.html", "class_c_p_s_1_1_s_p_1_1_ph3_1_1_resistor" ],
           [ "RxLine", "class_c_p_s_1_1_s_p_1_1_ph3_1_1_rx_line.html", "class_c_p_s_1_1_s_p_1_1_ph3_1_1_rx_line" ],
+          [ "Transformer", "class_c_p_s_1_1_s_p_1_1_ph3_1_1_transformer.html", "class_c_p_s_1_1_s_p_1_1_ph3_1_1_transformer" ],
           [ "VoltageSource", "class_c_p_s_1_1_s_p_1_1_ph3_1_1_voltage_source.html", "class_c_p_s_1_1_s_p_1_1_ph3_1_1_voltage_source" ]
         ] ]
       ] ],
