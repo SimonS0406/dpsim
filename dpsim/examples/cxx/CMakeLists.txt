@@ -24,6 +24,7 @@ set(CIRCUIT_SOURCES
 
 	# Powerflow examples
 	Circuits/PF_Slack_PiLine_PQLoad.cpp
+	Circuits/SP_Ph1_EuIEEE9_PF.cpp
 
 	# EMT examples
 	Circuits/EMT_CS_RL1.cpp
@@ -32,6 +33,7 @@ set(CIRCUIT_SOURCES
 	Circuits/DP_Basics_EMT_Sims.cpp
 	#Circuits/EMT_ResVS_RL_Switch.cpp
 	Circuits/EMT_VSI.cpp
+	Circuits/EMT_Ph3_PQLoad.cpp
 	Circuits/EMT_PiLine.cpp
 	Circuits/EMT_DecouplingLine_Ph3.cpp
 	Circuits/EMT_Diakoptics.cpp

@@ -132,6 +132,7 @@ list(APPEND MODELS_SOURCES
 	EMT/EMT_Ph3_VoltageSourceNorton.cpp
 	EMT/EMT_Ph3_PiLine.cpp
 	EMT/EMT_Ph3_RxLine.cpp
+	EMT/EMT_Ph3_PQLoad.cpp
 	EMT/EMT_Ph3_RXLoad.cpp
 	EMT/EMT_Ph3_NetworkInjection.cpp
 	EMT/EMT_Ph3_Transformer.cpp

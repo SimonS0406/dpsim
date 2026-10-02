@@ -1,5 +1,15 @@
+<<<<<<< HEAD
 // SPDX-FileCopyrightText: 2026 Institute for Automation of Complex Power Systems, EONERC, RWTH Aachen University
 // SPDX-License-Identifier: MPL-2.0
+=======
+/* Copyright 2017-2026 Institute for Automation of Complex Power Systems,
+ *                     EONERC, RWTH Aachen University
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ *********************************************************************************/
+>>>>>>> c618567eb (feat: add IEEE 9-bus system)
 
 #include <dpsim-models/EMT/EMT_Ph3_PQLoad.h>
 
@@ -9,6 +19,7 @@
 
 using namespace CPS;
 
+<<<<<<< HEAD
 namespace {
 
 bool isFiniteMatrix(const Matrix &matrix) {
@@ -21,6 +32,8 @@ bool isFiniteMatrix(const Matrix &matrix) {
 
 } // namespace
 
+=======
+>>>>>>> c618567eb (feat: add IEEE 9-bus system)
 EMT::Ph3::PQLoad::PQLoad(String uid, String name, Logger::Level logLevel)
     : MNASimPowerComp<Real>(uid, name, true, true, logLevel),
       mActivePower(mAttributes->create<Real>("P", 0.0)),
@@ -57,11 +70,19 @@ EMT::Ph3::PQLoad::PQLoad(String uid, String name, Real activePower,
 void EMT::Ph3::PQLoad::setParameters(Real activePower, Real reactivePower,
                                      Real nominalVoltage,
                                      Real minimumVoltagePerUnit) {
+<<<<<<< HEAD
   if (!Math::isFinite(activePower) || !Math::isFinite(reactivePower))
     throw std::invalid_argument("PQLoad power set points must be finite.");
   if (!Math::isFinite(nominalVoltage) || nominalVoltage <= 0.0)
     throw std::invalid_argument("PQLoad nominal voltage must be positive.");
   if (!Math::isFinite(minimumVoltagePerUnit) || minimumVoltagePerUnit <= 0.0)
+=======
+  if (!std::isfinite(activePower) || !std::isfinite(reactivePower))
+    throw std::invalid_argument("PQLoad power set points must be finite.");
+  if (!std::isfinite(nominalVoltage) || nominalVoltage <= 0.0)
+    throw std::invalid_argument("PQLoad nominal voltage must be positive.");
+  if (!std::isfinite(minimumVoltagePerUnit) || minimumVoltagePerUnit <= 0.0)
+>>>>>>> c618567eb (feat: add IEEE 9-bus system)
     throw std::invalid_argument(
         "PQLoad minimum per-unit voltage must be positive.");
 
@@ -102,9 +123,12 @@ Matrix EMT::Ph3::PQLoad::quadratureVoltage(const Matrix &voltage) {
 }
 
 Matrix EMT::Ph3::PQLoad::calculateCurrent(const Matrix &voltage) const {
+<<<<<<< HEAD
   if (!isFiniteMatrix(voltage))
     return Matrix::Zero(3, 1);
 
+=======
+>>>>>>> c618567eb (feat: add IEEE 9-bus system)
   Matrix voltageNoZeroSequence = voltage;
   voltageNoZeroSequence.array() -= voltageNoZeroSequence.mean();
 
@@ -249,9 +273,12 @@ void EMT::Ph3::PQLoad::updateVoltage(const Matrix &leftVector) {
 }
 
 bool EMT::Ph3::PQLoad::requiresIteration() {
+<<<<<<< HEAD
   if (!isFiniteMatrix(**mIntfVoltage) || !isFiniteMatrix(**mIntfCurrent))
     return false;
 
+=======
+>>>>>>> c618567eb (feat: add IEEE 9-bus system)
   const Matrix targetCurrent = calculateCurrent(**mIntfVoltage);
   const Real currentBase = std::hypot(**mActivePower, **mReactivePower) /
                            std::max(**mNomVoltage, 1.0);

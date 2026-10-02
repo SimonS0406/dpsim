@@ -356,6 +356,7 @@ void SP::Ph1::Transformer::pfApplyAdmittanceMatrixStamp(
     SparseMatrixCompRow &Y) {
   // calculate matrix stamp
   mY_element = MatrixComp(2, 2);
+<<<<<<< HEAD
   Complex halfLeakage = mLeakagePerUnit / 2.;
   Complex determinant =
       mLeakagePerUnit + halfLeakage * halfLeakage * mMagnetizingPerUnit;
@@ -366,6 +367,27 @@ void SP::Ph1::Transformer::pfApplyAdmittanceMatrixStamp(
   mY_element(0, 1) = -ySeries * mRatioPerUnit;
   mY_element(1, 0) = -ySeries * std::conj(mRatioPerUnit);
   mY_element(1, 1) = yShunted * std::norm(mRatioPerUnit);
+=======
+  Complex y = Complex(1, 0) / mLeakagePerUnit;
+  // The ideal transformer satisfies V0 = tap * V1. Conjugate the current
+  // transformation to conserve complex power, including phase shifts.
+  // Leakage is HV-referred. When initialization from terminals is disabled,
+  // createSubComponents() has not normalized the terminal order to HV first.
+  const Complex tap = std::polar(mRatioAbsPerUnit, mRatioPhase);
+
+  if (mNominalVoltageEnd1 >= mNominalVoltageEnd2) {
+    mY_element(0, 0) = y;
+    mY_element(0, 1) = -y * tap;
+    mY_element(1, 0) = -y * std::conj(tap);
+    mY_element(1, 1) = y * std::norm(tap);
+  } else {
+    const Complex inverseTap = Complex(1, 0) / tap;
+    mY_element(0, 0) = y * std::norm(inverseTap);
+    mY_element(0, 1) = -y * std::conj(inverseTap);
+    mY_element(1, 0) = -y * inverseTap;
+    mY_element(1, 1) = y;
+  }
+>>>>>>> c618567eb (feat: add IEEE 9-bus system)
 
   //check for inf or nan
   for (int i = 0; i < 2; i++)
